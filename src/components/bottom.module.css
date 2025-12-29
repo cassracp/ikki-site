@@ -1,37 +1,80 @@
-
 .grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
-    margin-top: 20px;
-    position: relative;
-    z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 30px; /* Garante espaço para o carimbo não ser cortado */
 }
 
 .portraitBox {
-    border: var(--border-style);
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background-size: cover;
-    background-position: center;
-    background-color: #e0d5c1;
-    position: relative;
-    overflow: hidden;
+  border: var(--border-style);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-color: #e0d5c1;
+  position: relative;
+  overflow: hidden;
 }
 
 .portraitInput {
-    background: rgba(255,255,255,0.8) !important;
-    border-top: 1px solid var(--ink-black) !important;
-    font-size: 0.8rem !important;
-    padding: 2px;
-    text-align: center;
-    border-bottom: none !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-top: 1px solid var(--ink-black) !important;
+  font-size: 0.8rem !important;
+  padding: 2px;
+  text-align: center;
+  border-bottom: none !important;
 }
 
 .titlesBox {
-    border: var(--border-style);
-    padding: 15px;
-    height: 100%;
+  border: var(--border-style);
+  padding: 15px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.notesWrapper {
+  margin-top: 20px;
+  border-top: 1px solid var(--ink-black);
+  padding-top: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.notesWrapper textarea {
+  flex: 1;
+  resize: none;
+}
+
+.stampContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 10px; /* Margem extra para evitar cortes */
+    opacity: 0.9;
+    user-select: none;
+    pointer-events: none;
+    gap: 4px;
+}
+
+.hankoStamp {
+    width: 60px;
+    height: 60px;
+}
+
+.stampText {
+    font-family: var(--font-main);
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--ink-black);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }

@@ -39,7 +39,7 @@ export const useGameStore = create<GameState>()(
         stats: {
           mentsu: { base: 1, mod: 0 },
           hara: { current: "", max: "", scars: "" },
-          movement: { dons: "" },
+          movement: { conditions: "" },
         },
         inventory: [],
       },

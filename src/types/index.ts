@@ -7,35 +7,35 @@ export interface IInventorySlot {
 }
 
 export interface IPortrait {
-    url: string;
+  url: string;
 }
 
 export interface IHara {
-    current: number | string; // Input allows text if empty, but mostly number
-    max: number | string;
-    scars: string;
+  current: number | string; // Input allows text if empty, but mostly number
+  max: number | string;
+  scars: string;
 }
 
 export interface IStats {
-    mentsu: {
-        base: number;
-        mod: number;
-    };
-    hara: IHara;
-    movement: {
-        dons: string;
-    };
+  mentsu: {
+    base: number;
+    mod: number;
+  };
+  hara: IHara;
+  movement: {
+    conditions: string;
+  };
 }
 
 export interface ICharacter {
   meta: {
-      name: string;
-      sex: string;
-      level: number;
-      giri: string;
-      titles: string;
-      notes: string;
-      image: IPortrait;
+    name: string;
+    sex: string;
+    level: number;
+    giri: string;
+    titles: string;
+    notes: string;
+    image: IPortrait;
   };
   stats: IStats;
   inventory: IInventorySlot[];

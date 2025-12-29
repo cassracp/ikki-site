@@ -21,7 +21,7 @@ export const StatsGrid: React.FC = () => {
     (stats.mentsu.base || 0) + (stats.mentsu.mod || 0) + mentsuBonus;
 
   // Movement Logic
-  const currentSpeed = isOverloaded ? "4.5m" : "9m";
+  const currentSpeed = isOverloaded ? "15' (4,5m)" : "30' (9m)";
 
   return (
     <div className={styles.grid}>
@@ -114,13 +114,13 @@ export const StatsGrid: React.FC = () => {
           <div className={styles.warningText}>LENTO (SOBRECARGA)</div>
         )}
         <div style={{ marginTop: "auto", width: "100%" }}>
-          <label>Dons / Vantagens</label>
+          <label>Condições</label>
           <textarea
             rows={3}
             style={{ fontSize: "0.8rem" }}
-            placeholder="Ex: Rastreador, Punhos de Ferro..."
-            value={stats.movement.dons}
-            onChange={(e) => updateMovement({ dons: e.target.value })}
+            placeholder="Ex: Cego, Ferido, Envenenado..."
+            value={stats.movement.conditions}
+            onChange={(e) => updateMovement({ conditions: e.target.value })}
           />
         </div>
       </div>
