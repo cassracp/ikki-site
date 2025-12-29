@@ -1,0 +1,81 @@
+.section {
+    margin-top: 20px;
+    border: var(--border-style);
+    padding: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.loadBarContainer {
+    width: 200px;
+    height: 20px;
+    border: 1px solid var(--ink-black);
+    background: #fff;
+    position: relative;
+}
+
+.loadBarFill {
+    height: 100%;
+    background: var(--pencil-gray);
+    width: 0%;
+    transition: width 0.3s, background 0.3s;
+}
+
+.loadBarText {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    font-size: 0.8rem;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    border-bottom: 2px solid var(--ink-black);
+    padding: 5px;
+    font-size: 0.8rem;
+}
+
+.table td {
+    border-bottom: 1px solid #ccc;
+    padding: 2px;
+}
+
+.inputFull {
+    width: 100%;
+    font-size: 0.95rem;
+    border-bottom: 0 !important; 
+}
+
+/* Overload States */
+.overloaded {
+    border-color: var(--blood-red);
+}
+
+.overloadedTitle {
+    color: var(--blood-red);
+}
+
+.overloadedFill {
+    background: var(--blood-red);
+}

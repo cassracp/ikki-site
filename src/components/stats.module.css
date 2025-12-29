@@ -1,0 +1,55 @@
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.statBox {
+    border: var(--border-style);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.3);
+}
+
+.bigValue {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.subStats {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.bigInput {
+    width: 80px; 
+    text-align: center; 
+    border: 1px solid #aaa !important;
+    font-size: 2.5rem !important;
+    font-weight: bold;
+}
+
+.warningText {
+    color: var(--blood-red);
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: block;
+}
+
+/* Overloaded Specifics */
+.overloadedBox {
+    border-color: var(--blood-red); /* Maybe? Legacy didn't border red the box, but text inside. Keeping as legacy logic which used classes on parents. */
+}
+/* Legacy: .overloaded #mentsu-final { color: red } */
+.overloadedText {
+    color: var(--blood-red) !important;
+}
