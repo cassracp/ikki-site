@@ -37,3 +37,12 @@ node_modules/.tmp/
 # persistence
 /public/storage/
 # Not ignoring storage for now as it's local only, but good to have.
+
+# Gemini records
+GEMINI/
+
+# Legacy MVP
+legacy_mvp/
+
+# Assets
+capa.png
