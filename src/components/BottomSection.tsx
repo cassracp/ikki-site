@@ -1,34 +1,16 @@
 import React from "react";
 import { useGameStore } from "../store/useGameStore";
+import { ImageUploader } from "./ImageUploader";
 import styles from "./bottom.module.css";
 
 export const BottomSection: React.FC = () => {
   const { character, updateCharacterMeta } = useGameStore();
   const { meta } = character;
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateCharacterMeta({ image: { url: e.target.value } });
-  };
-
   return (
     <div className={styles.grid}>
       <div className="input-group">
-        <div
-          className={styles.portraitBox}
-          style={{
-            backgroundImage: meta.image?.url
-              ? `url('${meta.image.url}')`
-              : "none",
-          }}
-        >
-          <input
-            type="text"
-            className={styles.portraitInput}
-            placeholder="Cole URL da Imagem aqui"
-            value={meta.image?.url || ""}
-            onChange={handleImageChange}
-          />
-        </div>
+        <ImageUploader />
       </div>
 
       <div className="input-group">

@@ -18,6 +18,9 @@ interface GameState {
     updates: Partial<IInventorySlot>
   ) => void;
   generateSlots: (count: number) => void;
+
+  // Persistence Actions
+  loadCharacter: (character: ICharacter) => void;
 }
 
 export const useGameStore = create<GameState>()(
@@ -122,6 +125,8 @@ export const useGameStore = create<GameState>()(
             },
           };
         }),
+
+      loadCharacter: (character) => set({ character }),
     }),
     {
       name: "ikki-storage-v2", // Versioned to prevent schema conflicts
