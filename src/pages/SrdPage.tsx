@@ -1,28 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-const srdContent = `
-# Regras Básicas (SRD)
-
-**IKKI** é um jogo sobre honra, sobrevivência e revolta.
-
-## Testes
-
-Role **1d6**.
-- **1-3**: Falha (Consequência).
-- **4-5**: Sucesso Parcial (Custo).
-- **6**: Sucesso Total.
-
-## Atributos
-
-- **Força**: Quebrar, levantar, intimidar.
-- **Destreza**: Mover-se, esconder-se, atirar.
-- **Espírito**: Resistir, perceber, invocar.
-
-Use seus atributos para modificar a rolagem ou determinar a eficácia.
-`;
-
 export const SrdPage: React.FC = () => {
+  const [markdown, setMarkdown] = useState<string>("");
+
+  useEffect(() => {
+    fetch("/srd.md")
+      .then((res) => res.text())
+      .then((text) => setMarkdown(text))
+      .catch((err) => console.error("Erro ao carregar SRD:", err));
+  }, []);
+
   return (
     <div
       style={{
@@ -37,7 +25,7 @@ export const SrdPage: React.FC = () => {
       }}
     >
       <div className="markdown-body" style={{ fontFamily: "serif" }}>
-        <ReactMarkdown>{srdContent}</ReactMarkdown>
+        <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
     </div>
   );

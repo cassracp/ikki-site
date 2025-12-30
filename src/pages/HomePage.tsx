@@ -12,6 +12,15 @@ export const HomePage: React.FC = () => {
         textAlign: "center",
       }}
     >
+      <img
+        src="/kabuto.svg"
+        alt="Kabuto Emblem"
+        style={{
+          width: "80px",
+          marginBottom: "20px",
+          filter: "drop-shadow(2px 2px 0 rgba(26, 26, 26, 0.5))",
+        }}
+      />
       <h1
         style={{
           fontSize: "8rem",
@@ -49,17 +58,18 @@ export const HomePage: React.FC = () => {
         Bem-vindo à ferramenta digital para{" "}
         <span
           style={{
-            fontFamily: "var(--font-japanese)",
+            fontFamily: "var(--font-display)",
             color: "#8a1c1c",
             fontSize: "1.6rem",
-            textShadow: "1px 1px 0 #1a1a1a",
+            textShadow: "4px 4px 0 #1a1a1a",
             fontWeight: "normal",
           }}
         >
           IKKI: MOKANBO TAN
         </span>
-        . Aqui você pode gerenciar sua ficha de personagem, consultar as regras
-        e gerar recursos para sua campanha.
+        <br />
+        Aqui você pode gerenciar sua ficha de personagem, consultar as regras e
+        gerar recursos para sua campanha.
       </p>
 
       <div
