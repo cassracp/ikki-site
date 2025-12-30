@@ -2,9 +2,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { ICharacter, IInventorySlot } from "../types";
 import { v4 as uuidv4 } from "uuid";
+import LZString from "lz-string";
 
 interface GameState {
   character: ICharacter;
+  isReadOnly: boolean;
   // Actions
   updateCharacterMeta: (updates: Partial<ICharacter["meta"]>) => void;
   updateStats: (updates: Partial<ICharacter["stats"]>) => void;
@@ -21,11 +23,15 @@ interface GameState {
 
   // Persistence Actions
   loadCharacter: (character: ICharacter) => void;
+
+  // Share Actions
+  generateShareLink: () => string;
+  loadFromShareLink: (compressedData: string) => void;
 }
 
 export const useGameStore = create<GameState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       character: {
         meta: {
           name: "",
@@ -43,6 +49,7 @@ export const useGameStore = create<GameState>()(
         },
         inventory: [],
       },
+      isReadOnly: false,
       updateCharacterMeta: (updates) =>
         set((state) => ({
           character: {
@@ -104,15 +111,12 @@ export const useGameStore = create<GameState>()(
             return { character: state.character };
 
           const currentLen = state.character.inventory.length;
-          // As per legacy lines 387-396, first 3 slots are defaulted to 1, others 0.
-          // We will just create 0 slots here, and logic can dictate default if needed,
-          // but typically we preserve state if it exists.
           const needed = count - currentLen;
 
           const newSlots: IInventorySlot[] = Array.from({ length: needed }).map(
             (_, idx) => ({
               id: uuidv4(),
-              slots: currentLen + idx < 3 ? 1 : 0, // Legacy default behavior
+              slots: currentLen + idx < 3 ? 1 : 0,
               quantityDisplay: "",
               name: "",
               description: "",
@@ -127,9 +131,36 @@ export const useGameStore = create<GameState>()(
         }),
 
       loadCharacter: (character) => set({ character }),
+
+      generateShareLink: () => {
+        const { character } = get();
+        // Clone state to avoid modifying the original and remove heavy data (image)
+        const characterCopy = JSON.parse(JSON.stringify(character));
+        if (characterCopy.meta) {
+          characterCopy.meta.image = { url: "" };
+        }
+        const serialized = JSON.stringify(characterCopy);
+        const compressed = LZString.compressToEncodedURIComponent(serialized);
+        const url = new URL(window.location.href);
+        url.searchParams.set("data", compressed);
+        return url.toString();
+      },
+
+      loadFromShareLink: (compressedData: string) => {
+        try {
+          const decompressed =
+            LZString.decompressFromEncodedURIComponent(compressedData);
+          if (!decompressed) return;
+
+          const character = JSON.parse(decompressed);
+          set({ character, isReadOnly: true });
+        } catch (e) {
+          console.error("Falha ao carregar dados do link:", e);
+        }
+      },
     }),
     {
-      name: "ikki-storage-v2", // Versioned to prevent schema conflicts
+      name: "ikki-storage-v2",
       partialize: (state) => ({ character: state.character }),
     }
   )

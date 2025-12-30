@@ -4,10 +4,11 @@ import { processImage } from "../services/imageService";
 import styles from "./bottom.module.css";
 
 export const ImageUploader: React.FC = () => {
-  const { character, updateCharacterMeta } = useGameStore();
+  const { character, updateCharacterMeta, isReadOnly } = useGameStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isReadOnly) return;
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -21,6 +22,7 @@ export const ImageUploader: React.FC = () => {
   };
 
   const handleBoxClick = () => {
+    if (isReadOnly) return;
     fileInputRef.current?.click();
   };
 
@@ -32,16 +34,16 @@ export const ImageUploader: React.FC = () => {
         backgroundImage: character.meta.image?.url
           ? `url('${character.meta.image.url}')`
           : "none",
-        cursor: "pointer",
+        cursor: isReadOnly ? "default" : "pointer",
         position: "relative",
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
-      title="Clique para carregar imagem do personagem"
+      title={isReadOnly ? "" : "Clique para carregar imagem do personagem"}
     >
-      {!character.meta.image?.url && (
+      {!isReadOnly && !character.meta.image?.url && (
         <span
           style={{
             color: "var(--ink-black)",
@@ -60,7 +62,7 @@ export const ImageUploader: React.FC = () => {
         accept="image/*"
         style={{ display: "none" }}
       />
-      {character.meta.image?.url && (
+      {!isReadOnly && character.meta.image?.url && (
         <div
           style={{
             position: "absolute",

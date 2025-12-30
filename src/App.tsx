@@ -1,31 +1,23 @@
-import { PaperContainer } from "./Layout/PaperContainer";
-import { HeaderSection } from "./components/HeaderSection";
-import { StatsGrid } from "./components/StatsGrid";
-import { InventorySection } from "./components/InventorySection/InventorySection";
-import { BottomSection } from "./components/BottomSection";
-import { DataPersistenceActions } from "./components/DataPersistenceActions";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MainLayout } from "./layouts/MainLayout";
+import { HomePage } from "./pages/HomePage";
+import { CharacterSheet } from "./pages/CharacterSheet";
+import { SrdPage } from "./pages/SrdPage";
+import { ToolsPage } from "./pages/ToolsPage";
+import "./App.css";
 
 function App() {
   return (
-    <PaperContainer>
-      <div className="sheet-header">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <h1>IKKI: Mokanbo Tan</h1>
-          <DataPersistenceActions />
-        </div>
-      </div>
-
-      <HeaderSection />
-      <StatsGrid />
-      <InventorySection />
-      <BottomSection />
-    </PaperContainer>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="sheet" element={<CharacterSheet />} />
+          <Route path="srd" element={<SrdPage />} />
+          <Route path="tools" element={<ToolsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

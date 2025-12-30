@@ -53,3 +53,9 @@
 .overloadedText {
     color: var(--blood-red) !important;
 }
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

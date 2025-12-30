@@ -11,13 +11,22 @@ export const HeaderSection: React.FC = () => {
         display: "grid",
         gridTemplateColumns: "3fr 1fr 1fr 1fr",
         gap: "15px",
+        marginTop: "10px", // Puxa um pouco para baixo para alinhar
         marginBottom: "20px",
         position: "relative",
         zIndex: 1,
       }}
     >
       <div className="input-group">
-        <label>Nome do Personagem</label>
+        <label
+          style={{
+            minHeight: "2.5rem",
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
+          Nome do Personagem
+        </label>
         <input
           type="text"
           placeholder="Nome do Ronin/Refugiado"
@@ -26,7 +35,15 @@ export const HeaderSection: React.FC = () => {
         />
       </div>
       <div className="input-group">
-        <label>Sexo/Pronome</label>
+        <label
+          style={{
+            minHeight: "2.5rem",
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
+          Sexo/Pronome
+        </label>
         <input
           type="text"
           value={meta.sex}
@@ -34,7 +51,15 @@ export const HeaderSection: React.FC = () => {
         />
       </div>
       <div className="input-group">
-        <label>Nível</label>
+        <label
+          style={{
+            minHeight: "2.5rem",
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
+          Nível
+        </label>
         <input
           type="number"
           value={meta.level}
@@ -46,7 +71,15 @@ export const HeaderSection: React.FC = () => {
         />
       </div>
       <div className="input-group">
-        <label>Giri (Reputação)</label>
+        <label
+          style={{
+            minHeight: "2.5rem",
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
+          Giri (Reputação)
+        </label>
         <input
           type="text"
           placeholder="0/100"

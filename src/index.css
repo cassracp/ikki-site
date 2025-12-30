@@ -6,7 +6,15 @@
   --border-style: 2px solid var(--ink-black);
   
   --font-main: 'Georgia', 'Times New Roman', serif;
-  --font-mono: 'Courier New', Courier, monospace;
+  --font-mono: 'Special Elite', cursive;
+  --font-japanese: 'KouzanMouhitu', serif;
+}
+
+@font-face {
+  font-family: 'KouzanMouhitu';
+  src: url('/fonts/KouzanMouhituFontOTF.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -17,6 +25,11 @@ body {
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 .dirty-paper {
@@ -77,3 +90,45 @@ label {
     margin-bottom: 3px;
     text-transform: uppercase;
 }
+
+/* Read Only Mode */
+.read-only input,
+.read-only textarea {
+  pointer-events: none;
+  border-bottom: none !important;
+  background: transparent;
+  color: var(--ink-black);
+  font-weight: bold;
+}
+
+/* Ocultar ferramentas de edição no modo leitura */
+.read-only .edit-controls,
+.read-only button:not(.allow-read-only),
+.read-only input[type="file"],
+.read-only .image-upload-trigger {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 0;
+    align-items: flex-start; /* Permite scroll se necessário e tira do centro vertical forçado */
+  }
+
+  .dirty-paper {
+    width: 100%;
+    max-width: 100%;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    padding: 10px; /* Reduz padding se houver, ou garante algum espaço */
+  }
+
+  /* Ajuste para o header principal que possui estilos inline no App.tsx */
+  .sheet-header > div {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px;
+  }
+}
+

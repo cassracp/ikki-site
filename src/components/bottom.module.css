@@ -5,7 +5,21 @@
   margin-top: 20px;
   position: relative;
   z-index: 1;
-  padding-bottom: 30px; /* Garante espaço para o carimbo não ser cortado */
+  padding-bottom: 30px; 
+  grid-template-areas: 
+      "portrait titles"
+      "stamp titles";
+}
+
+.portraitWrapper {
+    grid-area: portrait;
+}
+
+.titlesWrapper {
+    grid-area: titles;
+    display: flex;       /* Mantém comportamento se necessário, ou herda input-group */
+    flex-direction: column; 
+    height: 100%;
 }
 
 .portraitBox {
@@ -63,6 +77,8 @@
     user-select: none;
     pointer-events: none;
     gap: 4px;
+    grid-area: stamp;
+    align-self: start; /* Alinha o selo ao topo da sua célula (logo abaixo do retrato) */
 }
 
 .hankoStamp {
@@ -77,4 +93,14 @@
     color: var(--ink-black);
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "portrait"
+            "titles"
+            "stamp";
+    }
 }

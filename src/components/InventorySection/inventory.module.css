@@ -79,3 +79,15 @@
 .overloadedFill {
     background: var(--blood-red);
 }
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .loadBarContainer {
+        width: 100%;
+    }
+}

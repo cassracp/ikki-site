@@ -9,15 +9,11 @@ export const BottomSection: React.FC = () => {
 
   return (
     <div className={styles.grid}>
-      <div className="input-group" style={{ position: "relative" }}>
+      <div className={styles.portraitWrapper}>
         <ImageUploader />
-        <div className={styles.stampContainer}>
-          <span className={styles.stampText}>一揆: 盲官坊 譚</span>
-          <img src="/kabuto.svg" alt="Stamp" className={styles.hankoStamp} />
-        </div>
       </div>
 
-      <div className="input-group">
+      <div className={styles.titlesWrapper}>
         <div className={styles.titlesBox}>
           <label style={{ fontSize: "1.2rem" }}>
             Títulos & Habilidades (Perícias)
@@ -40,6 +36,20 @@ export const BottomSection: React.FC = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div className={styles.stampContainer}>
+        <span
+          className={styles.stampText}
+          style={{
+            fontFamily: "var(--font-japanese)",
+            fontSize: "1.8rem",
+            letterSpacing: "2px",
+          }}
+        >
+          一揆: 盲官坊 譚
+        </span>
+        <img src="/kabuto.svg" alt="Stamp" className={styles.hankoStamp} />
       </div>
     </div>
   );
