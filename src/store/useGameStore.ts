@@ -4,6 +4,25 @@ import type { ICharacter, IInventorySlot } from "../types";
 import { v4 as uuidv4 } from "uuid";
 import LZString from "lz-string";
 
+export const GIRI_PROGRESSION = [
+  { level: 1, min: 0 },
+  { level: 2, min: 100 },
+  { level: 3, min: 300 },
+  { level: 4, min: 500 },
+  { level: 5, min: 800 },
+  { level: 6, min: 1500 },
+  { level: 7, min: 3000 },
+  { level: 8, min: 4500 },
+  { level: 9, min: 6000 },
+  { level: 10, min: 7500 },
+];
+
+export const getNextLevelGiri = (level: number) => {
+  const nextLevel = level + 1;
+  const entry = GIRI_PROGRESSION.find((p) => p.level === nextLevel);
+  return entry ? entry.min : "MAX";
+};
+
 interface GameState {
   character: ICharacter;
   isReadOnly: boolean;
@@ -44,19 +63,46 @@ export const useGameStore = create<GameState>()(
         },
         stats: {
           mentsu: { base: 1, mod: 0 },
-          hara: { current: "", max: "", scars: "" },
+          hara: { current: 4, max: 4, scars: "" },
           movement: { conditions: "" },
         },
         inventory: [],
       },
       isReadOnly: false,
       updateCharacterMeta: (updates) =>
-        set((state) => ({
-          character: {
-            ...state.character,
-            meta: { ...state.character.meta, ...updates },
-          },
-        })),
+        set((state) => {
+          const newMeta = { ...state.character.meta, ...updates };
+
+          // Auto-level logic if Giri is updated
+          if (updates.giri !== undefined) {
+            const giriStr = String(updates.giri).replace(/[^\d]/g, "");
+            const giriVal = parseInt(giriStr, 10);
+
+            if (!isNaN(giriVal)) {
+              let calculatedLevel = 1;
+              for (const row of GIRI_PROGRESSION) {
+                if (giriVal >= row.min) {
+                  calculatedLevel = row.level;
+                } else {
+                  break;
+                }
+              }
+              newMeta.level = Math.min(calculatedLevel, 10);
+            }
+          }
+
+          // Limit manual level update
+          if (newMeta.level > 10) {
+            newMeta.level = 10;
+          }
+
+          return {
+            character: {
+              ...state.character,
+              meta: newMeta,
+            },
+          };
+        }),
       updateStats: (updates) =>
         set((state) => ({
           character: {

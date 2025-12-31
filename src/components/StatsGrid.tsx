@@ -45,6 +45,7 @@ export const StatsGrid: React.FC = () => {
             <input
               type="number"
               style={{ width: "50px", textAlign: "center" }}
+              placeholder="4"
               value={stats.mentsu.base}
               onChange={(e) => updateMentsu({ base: Number(e.target.value) })}
             />
@@ -71,11 +72,11 @@ export const StatsGrid: React.FC = () => {
           <div className="input-group">
             <label>Atual</label>
             <input
-              type="text" // keep text to allow empty placeholder
+              type="number"
               className={styles.bigInput}
-              placeholder="MAX"
+              placeholder="4"
               value={stats.hara.current}
-              onChange={(e) => updateHara({ current: e.target.value })}
+              onChange={(e) => updateHara({ current: Number(e.target.value) })}
             />
           </div>
           <div style={{ fontSize: "2rem", paddingTop: "10px" }}>/</div>
@@ -84,9 +85,9 @@ export const StatsGrid: React.FC = () => {
             <input
               type="text"
               className={styles.bigInput}
-              placeholder="MAX"
+              placeholder="4"
               value={stats.hara.max}
-              onChange={(e) => updateHara({ max: e.target.value })}
+              onChange={(e) => updateHara({ max: Number(e.target.value) })}
             />
           </div>
         </div>

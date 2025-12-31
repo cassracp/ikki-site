@@ -147,3 +147,59 @@ label {
   }
 }
 
+/* Markdown Content Styling */
+.markdown-body {
+    line-height: 1.45;
+    text-align: left;
+    font-size: 1.05rem;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    text-align: left;
+}
+
+.markdown-body p {
+    margin-bottom: 0.8em;
+}
+
+.markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: var(--font-body);
+    border: 1px solid var(--ink-black);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.markdown-body th {
+    background-color: rgba(138, 28, 28, 0.1);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 12px;
+    border: 1px solid var(--ink-black);
+    border-bottom: 2px solid var(--ink-black);
+    font-size: 0.9rem;
+}
+
+.markdown-body td {
+    padding: 10px 12px;
+    border: 1px solid var(--pencil-gray);
+    font-size: 1.1rem;
+}
+
+.markdown-body tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.markdown-body blockquote {
+    border-left: 4px solid var(--blood-red);
+    margin: 0;
+    padding-left: 1.5em;
+    font-style: italic;
+    color: var(--pencil-gray);
+}
+
+

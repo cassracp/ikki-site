@@ -1,0 +1,10 @@
+{
+  "cherryMarkdown.Theme": "dark",
+  "cherryMarkdown.CustomUploader": {
+    "enable": true,
+    "url": "https://your-server.com/upload",
+    "headers": {
+      "Access-Control-Allow-Origin": "*"
+    }
+  }
+}

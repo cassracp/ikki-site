@@ -1,9 +1,11 @@
 import React from "react";
-import { useGameStore } from "../store/useGameStore";
+import { useGameStore, getNextLevelGiri } from "../store/useGameStore";
 
 export const HeaderSection: React.FC = () => {
   const { character, updateCharacterMeta } = useGameStore();
   const { meta } = character;
+
+  const nextLevelGiri = getNextLevelGiri(meta.level);
 
   return (
     <div
@@ -42,7 +44,7 @@ export const HeaderSection: React.FC = () => {
             alignItems: "flex-end",
           }}
         >
-          Sexo/Pronome
+          Gênero/Pronome
         </label>
         <input
           type="text"
@@ -64,8 +66,9 @@ export const HeaderSection: React.FC = () => {
           type="number"
           value={meta.level}
           min={1}
+          max={10}
           onChange={(e) =>
-            updateCharacterMeta({ level: Number(e.target.value) })
+            updateCharacterMeta({ level: Math.min(Number(e.target.value), 10) })
           }
           style={{ fontWeight: "bold" }}
         />
@@ -80,12 +83,25 @@ export const HeaderSection: React.FC = () => {
         >
           Giri (Reputação)
         </label>
-        <input
-          type="text"
-          placeholder="0/100"
-          value={meta.giri}
-          onChange={(e) => updateCharacterMeta({ giri: e.target.value })}
-        />
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <input
+            type="text"
+            placeholder="0"
+            value={meta.giri}
+            onChange={(e) => updateCharacterMeta({ giri: e.target.value })}
+            style={{ flex: 1, minWidth: "0" }}
+          />
+          <span
+            style={{
+              paddingTop: "5px",
+              whiteSpace: "nowrap",
+              fontSize: "0.9rem",
+              opacity: 0.8,
+            }}
+          >
+            / {nextLevelGiri}
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ export const MainLayout: React.FC = () => {
         }}
       >
         <Link to="/" style={navLinkStyle("/")}>
-          Home
+          Início
         </Link>
         <Link to="/sheet" style={navLinkStyle("/sheet")}>
           Ficha
@@ -50,6 +50,9 @@ export const MainLayout: React.FC = () => {
         </Link>
         <Link to="/tools" style={navLinkStyle("/tools")}>
           Ferramentas
+        </Link>
+        <Link to="/about" style={navLinkStyle("/about")}>
+          Sobre
         </Link>
       </nav>
 

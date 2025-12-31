@@ -33,15 +33,22 @@ export const HomePage: React.FC = () => {
           borderBottom: "none",
         }}
       >
-        一揆
+        <span
+          style={{ lineHeight: "0.5", marginBottom: "10px", display: "block" }}
+        >
+          一<br />
+          揆: <br /> <br />
+        </span>
       </h1>
       <h2
         style={{
+          lineHeight: "0.8",
           marginBottom: "40px",
           fontFamily: "var(--font-japanese)",
           fontSize: "3rem",
-          color: "#d4c5a9",
+          color: "#ac894ade",
           fontWeight: "normal",
+          textShadow: "4px 4px 0 #1a1a1a",
           borderBottom: "none",
         }}
       >
@@ -55,7 +62,7 @@ export const HomePage: React.FC = () => {
           fontFamily: "var(--font-mono)",
         }}
       >
-        Bem-vindo à ferramenta digital para{" "}
+        Boas-vindas ao SRD de{" "}
         <span
           style={{
             fontFamily: "var(--font-display)",
@@ -65,11 +72,23 @@ export const HomePage: React.FC = () => {
             fontWeight: "normal",
           }}
         >
-          IKKI: MOKANBO TAN
+          IKKI:
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "#ac894ade",
+            fontSize: "1.4rem",
+            textShadow: "4px 4px 0 #1a1a1a",
+            fontWeight: "normal",
+          }}
+        >
+          {" "}
+          MOKANBO TAN
         </span>
         <br />
-        Aqui você pode gerenciar sua ficha de personagem, consultar as regras e
-        gerar recursos para sua campanha.
+        Aqui você pode criar e gerenciar sua ficha de personagem, consultar as
+        regras, conhecer mais sobre o sistema e gerar recursos para o seu jogo.
       </p>
 
       <div

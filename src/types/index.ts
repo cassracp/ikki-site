@@ -11,15 +11,15 @@ export interface IPortrait {
 }
 
 export interface IHara {
-  current: number | string; // Input allows text if empty, but mostly number
-  max: number | string;
+  current: number | 4;
+  max: number | 4;
   scars: string;
 }
 
 export interface IStats {
   mentsu: {
-    base: number;
-    mod: number;
+    base: number | 4;
+    mod: number | 0;
   };
   hara: IHara;
   movement: {
