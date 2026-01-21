@@ -12,7 +12,13 @@ export const MarkdownPage: React.FC<MarkdownPageProps> = ({ fileName }) => {
   useEffect(() => {
     fetch(fileName)
       .then((res) => res.text())
-      .then((text) => setMarkdown(text))
+      .then((text) => {
+        const processedText = text.replace(
+          /´([\s\S]*?)´/g,
+          "\n```note\n$1\n```\n"
+        );
+        setMarkdown(processedText);
+      })
       .catch((err) => console.error(`Erro ao carregar ${fileName}:`, err));
   }, [fileName]);
 
@@ -81,6 +87,21 @@ export const MarkdownPage: React.FC<MarkdownPageProps> = ({ fileName }) => {
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
+            code: ({ node, className, children, ...props }) => {
+              const match = /language-(\w+)/.exec(className || "");
+              if (match && match[1] === "note") {
+                return (
+                  <div className="rpg-note">
+                    <ReactMarkdown>{String(children)}</ReactMarkdown>
+                  </div>
+                );
+              }
+              return (
+                <code className={className} {...props}>
+                  {children}
+                </code>
+              );
+            },
             a: ({ node, href, children, ...props }) => {
               const isAnchor = href?.startsWith("#");
 

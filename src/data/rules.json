@@ -1,0 +1,48 @@
+[
+  {
+    "title": "Iniciando",
+    "path": "character-creation",
+    "file": "/rules/character_creation.md"
+  },
+  {
+    "title": "Heranças",
+    "path": "heritage",
+    "file": "/rules/heritage.md"
+  },
+  {
+    "title": "Conceito de Jogo",
+    "path": "concept",
+    "file": "/rules/concept.md"
+  },
+  {
+    "title": "Resoluções & Testes",
+    "path": "resolution",
+    "file": "/rules/resolution.md"
+  },
+  {
+    "title": "Equipamentos & Itens",
+    "path": "items",
+    "children": [
+      {
+        "title": "Armas",
+        "path": "weapons",
+        "file": "/rules/items/weapons.md"
+      },
+      {
+        "title": "Exploração",
+        "path": "exploration",
+        "file": "/rules/items/exploration.md"
+      }
+    ]
+  },
+  {
+    "title": "Ameaças (PNJs)",
+    "path": "threats",
+    "file": "/rules/threats.md"
+  },
+  {
+    "title": "Medidas & Valores",
+    "path": "measures",
+    "file": "/rules/measures.md"
+  }
+]

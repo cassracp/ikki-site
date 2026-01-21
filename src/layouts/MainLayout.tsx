@@ -45,7 +45,20 @@ export const MainLayout: React.FC = () => {
         <Link to="/sheet" style={navLinkStyle("/sheet")}>
           Ficha
         </Link>
-        <Link to="/srd" style={navLinkStyle("/srd")}>
+        <Link
+          to="/rules"
+          style={{
+            ...navLinkStyle("/rules"),
+            borderBottom:
+              isActive("/rules") || location.pathname.startsWith("/rules")
+                ? "2px solid #8a1c1c"
+                : "2px solid transparent",
+            color:
+              isActive("/rules") || location.pathname.startsWith("/rules")
+                ? "#f0e6d2"
+                : "#a0a0a0",
+          }}
+        >
           Regras
         </Link>
         <Link to="/tools" style={navLinkStyle("/tools")}>
